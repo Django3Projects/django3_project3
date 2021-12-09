@@ -123,3 +123,6 @@ STATIC_URL = '/static/'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
+
+#the key where we store the cart of user session
+CART_SESSION_ID = 'cart'
