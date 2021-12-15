@@ -10,7 +10,7 @@ class Cart(object) :
         Initialization the cart.
         """
         self.session = request.session
-        cart = self.sesion.get(settings.CART_SESSION_ID)
+        cart = self.session.get(settings.CART_SESSION_ID)
         if not cart :
             # save an empty cart in the session
             cart = self.session[settings.CART_SESSION_ID] ={}
@@ -33,6 +33,16 @@ class Cart(object) :
     def save(self):
         #mark the session as "modified" to make sure it gets saved
         self.session.modified = True
+    
+    def remove(self,product):
+        """
+        remove a product from the cart
+        """
+        product_id = str(product.id)
+        if product_id in self.cart:
+            del self.cart[product_id]
+            self.save()
+    
     def __iter__(self):
         """
         Iterate over the items in the cart and get the products 
@@ -58,8 +68,8 @@ class Cart(object) :
         return sum(item['quantity'] for item in self.cart.values())
     
     def get_total_price(self):
-        return sum(Decimal(item['price']) * item['quantity'] for item
-            in self.cart.Values())
+        return sum(Decimal(item['price']) * item['quantity'] for item 
+        in self.cart.values())
         
     
     def clear(self):
