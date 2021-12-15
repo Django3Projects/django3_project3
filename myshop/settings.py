@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
+import django_heroku
+
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -128,3 +130,5 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 
 #the key where we store the cart of user session
 CART_SESSION_ID = 'cart'
+
+django_heroku.settings(locals())
