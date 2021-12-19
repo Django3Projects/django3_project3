@@ -16,3 +16,4 @@ certifi==2021.10.8
 easy-thumbnails==2.8
 
 celery==4.4.2
+flower==0.9.3
