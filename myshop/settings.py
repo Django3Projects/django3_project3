@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'shop.apps.ShopConfig',
     'cart.apps.CartConfig',
     'orders.apps.OrdersConfig',
+    'payment.apps.PaymentConfig',
 ]
 
 MIDDLEWARE = [
@@ -140,3 +141,18 @@ CART_SESSION_ID = 'cart'
 django_heroku.settings(locals())
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+
+# Braintree settings
+BRAINTREE_MERCHANT_ID='gdqp66hzyqcsgqsf' #MERCHANT_ID
+BRAINTREE_PUBLIC_KEY='6ct632g9s2n3b4cm'
+BRAINTREE_PRIVATE_KEY='8866c64c4c12956f3d17f35e0bae2a63'
+
+import braintree
+BRAINTREE_CONF = braintree.Configuration(
+    braintree.Environment.Sandbox,
+    BRAINTREE_MERCHANT_ID,
+    BRAINTREE_PUBLIC_KEY,
+    BRAINTREE_PRIVATE_KEY
+
+)
